@@ -3,20 +3,29 @@ import Card from './card/Card'
 // import Context from './context'
 
 function App() {
-  const [people, setPeople] = React.useState([])
-  const[searchResult, setSearchResalt]= useState([])
+  const [people, setPeople] = useState([])
+  const[searchResult, setSearchResult]= useState([])
+  console.log(searchResult)
+  console.log(people)
 
   const[searchName, setSearchName] = useState('')
 
   const searchHandlerName =(searchName) =>{
     setSearchName(searchName)
     if(searchName !==""){
-      const resName = people.filter(person=>{
-        return person.name.toLowerCase().includes(searchName.toLowerCase())
-      })
-      setSearchResalt(resName)
+      let resName =[]
+      if(searchResult.length<1){
+        resName = people.filter(person=>{
+          return person.name.toLowerCase().includes(searchName.toLowerCase())
+        })
+      } else {
+        resName = searchResult.filter(person=>{
+          return person.name.toLowerCase().includes(searchName.toLowerCase())
+        })
+      }
+      setSearchResult(resName)
     } else{
-      setSearchResalt(people)
+      setSearchResult(people)
     }
   }
 
@@ -25,11 +34,23 @@ function App() {
   const searchHandlerLastname =(searchLastname) =>{
     setSearchLastname(searchLastname)
     if(searchLastname !==""){
-      const resLastname = people.filter(person=>{
-        return person.lastname.toLowerCase().includes(searchLastname.toLowerCase())
-      })
-      setSearchResalt(resLastname)
-    } 
+      let resLastname =[]
+      if(searchResult.length<1){
+        resLastname = people.filter(person=>{
+          return person.lastname.toLowerCase().includes(searchLastname.toLowerCase())
+        })
+      } else {
+        resLastname = searchResult.filter(person=>{
+          return person.lastname.toLowerCase().includes(searchLastname.toLowerCase())
+        })
+      }
+      // const resLastname = people.filter(person=>{
+      //   return person.lastname.toLowerCase().includes(searchLastname.toLowerCase())
+      // })
+      setSearchResult(resLastname)
+    } else{
+      setSearchResult(people)
+    }
   }
 
   const[searchAge, setSearchAge] = useState('')
@@ -40,8 +61,10 @@ function App() {
       const resAge = people.filter(person=>{
         return person.age === +searchAge
       })
-      setSearchResalt(resAge)
-    } 
+      setSearchResult(resAge)
+    } else{
+      setSearchResult(people)
+    }
   }
 
   const[searchSex, setSearchSex] = useState('')
@@ -52,9 +75,9 @@ function App() {
       const resSex = people.filter(person=>{
         return person.sex === searchSex
       })
-      setSearchResalt(resSex)
+      setSearchResult(resSex)
     } else{
-      setSearchResalt(people)
+      setSearchResult(people)
     }
   }
 

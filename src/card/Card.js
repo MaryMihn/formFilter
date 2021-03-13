@@ -41,10 +41,10 @@ function Card(props) {
             Возраст <input type="text" ref ={ageRef} onChange={getSearchAge} placeholder ="Возраст"></input>
         </div>
         <div>Пол
-            <input type="checkbox"  ref ={sexRef} onChange={getSearchSex} value="m" name="Sex" id ='male' />
-            <label htmlFor="male">Ж</label>
+            <input type="checkbox" ref ={sexRef} onChange={getSearchSex} value="m" name="Sex" id ='male' />
+            <label htmlFor="male">M</label>
             <input type="checkbox" ref ={sexRef} onChange={getSearchSex} value="f" name="Sex" id="female"/>
-            <label htmlFor="female">М</label><br />
+            <label htmlFor="female">Ж</label><br />
          </div>
 
         {(props.people.length>0)? props.people.map((el, index)=>{
